@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Крестики-нолики</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            cursor: pointer;
+            border: 2px solid #000;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="board">
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+    <div class="cell"></div>
+</div>
+
+<div class="message" id="message"></div>
+
+<script>
+    const cells = document.querySelectorAll('.cell');
+    const message = document.getElementById('message');
+    let currentPlayer = 'X';
+    let gameActive = true;
+    let boardState = ['', '', '', '', '', '', '', '', ''];
+
+    const winningCombinations = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
+    function checkWin() {
+        for (let combination of winningCombinations) {
+            const [a, b, c] = combination;
+            if (boardState[a] && boardState[a] === boardState[b] && boardState[a] === boardState[c]) {
+                return boardState[a];
+            }
+        }
+        return null;
+    }
+
+    function checkDraw() {
+        return boardState.every(cell => cell);
+    }
+
+    function handleClick(e) {
+        const index = Array.from(cells).indexOf(e.target);
+
+        if (boardState[index] || !gameActive) return;
+
+        boardState[index] = currentPlayer;
+        e.target.textContent = currentPlayer;
+
+        const winner = checkWin();
+
+        if (winner) {
+            message.textContent = `${winner} победил!`;
+            gameActive = false;
+        } else if (checkDraw()) {
+            message.textContent = 'Ничья!';
+            gameActive = false;
+        } else {
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            message.textContent = `Ход игрока ${currentPlayer}`;
+        }
+    }
+
+    cells.forEach(cell => cell.addEventListener('click', handleClick));
+</script>
+
+</body>
+</html>

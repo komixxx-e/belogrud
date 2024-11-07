@@ -4,7 +4,8 @@ document.body.style.cursor = 'none';
 document.body.style.margin = '0';
 document.body.style.height = '100vh';
 
-
+//polniy pricol
+//polniy pricol
 pricol.style.width = '30px';
 pricol.style.height = '30px';
 pricol.style.backgroundColor = '#595959';

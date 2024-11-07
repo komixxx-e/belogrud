@@ -1,0 +1,28 @@
+:root {
+    --bg-color: black;
+    --ac-color: white;
+}
+
+* {
+    transition: 0.3s;
+    margin: 0;
+}
+
+h1,h2,h3,p{
+    color: var(--ac-color);
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+#darkMode{
+    position: fixed;
+    right: 0;
+    color: var(--ac-color);
+    font-size: 30px;
+    border: solid var(--ac-color);
+    border-width:0 0 2px 2px;
+    border-radius:0 0 0 100px ;
+    background-color: var(--bg-color);
+}
