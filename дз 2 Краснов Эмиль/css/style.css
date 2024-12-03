@@ -1,0 +1,25 @@
+.contain{
+    display: flex;
+    gap: 10px;
+}
+
+body{
+    font-family: "montserrat";
+}
+
+.card{
+    background-color: #EEEEEE;
+    text-align: center;
+    font-size: 60px;
+    padding: 10px;
+    width: 100px;
+}
+
+.red{
+    color: #DB0000;
+}
+
+@font-face {
+    font-family: "montserrat";
+    src: url(../fonts/Montserrat-Regular.ttf);
+}
